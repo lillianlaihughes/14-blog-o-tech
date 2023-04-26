@@ -1,0 +1,27 @@
+{
+    "name": "blog-o-tech",
+    "version": "1.0.0",
+    "description": "a tech blog, lol",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "seed": "node seeds/seed.js"
+    },
+    "author": "Lillian",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "connect-session-sequelize": "^7.1.6",
+        "dotenv": "^16.0.3",
+        "express-handlebars": "^7.0.7",
+        "express-session": "^1.17.3",
+        "mysql2": "^3.2.4",
+        "sequelize": "^6.31.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.39.0",
+        "eslint-config-prettier": "^8.8.0",
+        "prettier": "2.8.8"
+    }
+}
