@@ -1,14 +1,16 @@
+// follows same format for Writer
+// LILLIAN TO DO: should Writer and Commenter be one entity? A user can do both, so...
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Writer extends Model {
+class Commenter extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
 
-Writer.init(
+Commenter.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -40,17 +42,20 @@ Writer.init(
   {
     hooks: {
       // hash pw before creating new user
-      beforeCreate: async (newWriterData) => {
-        newWriterData.password = await bcrypt.hash(newWriterData.password, 10);
-        return newWriterData;
-      },
-      // hash pw before updating user
-      beforeUpdate: async (updatedWriterData) => {
-        updatedWriterData.password = await bcrypt.hash(
-          updatedWriterData.password,
+      beforeCreate: async (newCommenterData) => {
+        newCommenterData.password = await bcrypt.hash(
+          newCommenterData.password,
           10
         );
-        return updatedWriterData;
+        return newCommenterData;
+      },
+      // hash pw before updating user
+      beforeUpdate: async (updatedCommenterData) => {
+        updatedCommenterData.password = await bcrypt.hash(
+          updatedCommenterData.password,
+          10
+        );
+        return updatedCommenterData;
       },
     },
   },
@@ -59,8 +64,8 @@ Writer.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'writer',
+    modelName: 'commenter',
   }
 );
 
-module.exports = Writer;
+module.exports = Commenter;

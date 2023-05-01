@@ -1,9 +1,10 @@
+// follows same format as Article
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Article extends Model {}
+class Comment extends Model {}
 
-Article.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,21 +12,18 @@ Article.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    comment: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
     },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
-      writer_id: {
+      commenter_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: "writer",
+          model: "commenter",
           key: "id",
         },
       },
@@ -36,8 +34,8 @@ Article.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "writer",
+    modelName: "comment",
   }
 );
 
-module.exports = Article;
+module.exports = Comment;

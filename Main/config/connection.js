@@ -19,3 +19,5 @@ if (process.env.JAWSDB_URL) {
 }
 
 module.exports = sequelize;
+
+// LILLIAN TO DO: review JawsDB
