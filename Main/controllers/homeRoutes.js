@@ -51,6 +51,29 @@ router.get('/article/:id', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    const writerData
+    const writerData = await Writer.findByPk(req.session.writer_id, {
+      atributes: { exclude: ['password'] },
+      include: [{ model: Article }, { model: Comment }],
+    });
+
+    const writer = writerData.get({ plain: true });
+
+    res.render('profile', {
+      ...writer,
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
-})
+});
+
+router.get('/login', (req, res) => {
+  // if user is logged in, redirect to their profile page
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+  res.render('login');
+});
+
+module.exports = router;
