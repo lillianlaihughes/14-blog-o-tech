@@ -1,3 +1,9 @@
+# 14-blog-o-tech
+
+## This is a work in progress!
+
+## And I acknowledge that I don't have the skills or the speed to complete this homework in time while working on a group project. BUT I'll continue working on it, promise!
+
 View: express-handlebars - use for Views
 Model: MySQL2
 Controller: Sequelize - use these two to connect to a db for Models and create an Express.js API for controllers
@@ -10,8 +16,6 @@ express-session
 connect-session-sequelize
 
 - use these two to add authentication
-
-# 14-blog-o-tech
 
 # 14 Model-View-Controller (MVC): Tech Blog
 
