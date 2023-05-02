@@ -1,5 +1,13 @@
+/* CRUD
+Create
+Read - - router.get
+Update
+Delete
+*/
+
 const router = require('express').Router();
-const { Article, Writer, Comment, Commenter } = require('../models');
+const { Article, Writer, Comment } = require('../models');
+// LILLIAN TO DO: this one needs doing
 const { getAttributes } = require('../models/Writer');
 const withAuth = require('../utils/auth');
 
@@ -26,6 +34,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// get 1 article by id
 router.get('/article/:id', async (req, res) => {
   try {
     const articleData = await Article.findByPk(req.params.id, {
@@ -39,7 +48,7 @@ router.get('/article/:id', async (req, res) => {
     // serialize the one article so the template can read it
     const article = articleData.get({ plain: true });
     res.render('article', {
-      // LILLIAN TO DO: review this ... concept again
+      // LILLIAN TO DO: review this ...spread concept again
       ...article,
       logged_in: req.session.logged_in,
     });
